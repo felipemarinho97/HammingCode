@@ -1,5 +1,9 @@
 :- initialization(main).
 
+toListNum([], []).
+toListNum([S|Ss], [R|Rs]):-
+  atom_number(S,R), toListNum(Ss,Rs).
+
 xor(A, A, 0).
 xor(A, B, 1):-
   A \= B.
@@ -24,6 +28,7 @@ main :-
   read(STRING),
   % Converte para lista
   string_chars(STRING, SEQUENCIA),
-  parity(SEQUENCIA, RES),
+  toListNum(SEQUENCIA, NUMS),
+  parity(NUMS, RES),
   writeln(RES),
   askIfAgain.
